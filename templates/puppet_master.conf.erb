@@ -1,0 +1,49 @@
+[main]
+logdir=/var/log/puppet
+vardir=/var/lib/puppet
+ssldir=/var/lib/puppet/ssl
+rundir=/var/run/puppet
+factpath=$vardir/lib/facter
+templatedir=$confdir/templates
+
+<% if @osfamily =~ /^(Debian|Ubuntu)/ -%>
+prerun_command=/etc/puppet/etckeeper-commit-pre
+postrun_command=/etc/puppet/etckeeper-commit-post
+<% end -%>
+
+server = <%= scope.lookupvar('puppet::master::puppet_server') %>
+modulepath = <%= scope.lookupvar('puppet::master::puppet_modulepath').join(':') %>,
+
+[master]
+pluginsync=true
+<% if scope.lookupvar('puppet::master::puppet_db') -%> 
+storeconfigs = true
+storeconfigs_backend = puppetdb
+<% end -%>
+<% if scope.lookupvar('puppet::master::puppet_dashboard_db_host') -%> 
+reports = store, http
+reporturl = http://<%= scope.lookupvar('puppet::params::puppet_dashboard') -%>:3333/reports/upload
+
+#node_terminus = exec
+#external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=http://<%= scope.lookupvar('puppet::params::puppet_dashboard') -%>:3333 <%= scope.lookupvar('puppet::params::puppet_config_dir') -%>/external_node
+<% end -%>
+
+# These are needed when the puppetmaster is run by passenger
+# and can safely be removed if webrick is used.
+ssl_client_header = SSL_CLIENT_S_DN 
+ssl_client_verify_header = SSL_CLIENT_VERIFY
+
+certname = <%= scope.lookupvar('puppet::master::puppet_certname') %>
+<% if @puppet_env -%>
+<% @puppet_env.each do |env| %>
+
+[<%= env -%>]
+manifest = $confdir/environments/<%= env -%>/manifests/site.pp
+modulepath = $confdir/environments/<%= env -%>/modules
+<% end %>
+<% end -%>
+
+[agent]
+<% if scope.lookupvar('puppet::master::puppet_dashboard_db_host') -%> 
+report = true
+<% end -%>
