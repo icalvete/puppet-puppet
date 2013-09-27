@@ -45,7 +45,7 @@ class puppet::master::config (
       content => template("${module_name}/external_node.erb"),
       owner   => 'root',
       group   => 'root',
-      mode    => '0744',
+      mode    => '0755',
     }
 
   }

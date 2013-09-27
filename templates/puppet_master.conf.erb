@@ -24,8 +24,8 @@ storeconfigs_backend = puppetdb
 reports = store, http
 reporturl = http://<%= scope.lookupvar('puppet::params::puppet_dashboard') -%>:3333/reports/upload
 
-#node_terminus = exec
-#external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=http://<%= scope.lookupvar('puppet::params::puppet_dashboard') -%>:3333 <%= scope.lookupvar('puppet::params::puppet_config_dir') -%>/external_node
+node_terminus = exec
+external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=http://<%= scope.lookupvar('puppet::params::puppet_dashboard') -%>:3333 <%= scope.lookupvar('puppet::params::puppet_config_dir') -%>/external_node
 <% end -%>
 
 # These are needed when the puppetmaster is run by passenger
