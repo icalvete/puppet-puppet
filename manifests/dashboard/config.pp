@@ -1,12 +1,17 @@
 class puppet::dashboard::config {
 
-  file{ 'puppet_dashboard_config':
+  file {$puppet::params::puppet_config_dashboard_dir:
+    ensure => directory
+  }
+
+  file { 'puppet_dashboard_config':
     ensure  => present,
     path    => "${puppet::params::puppet_config_dashboard_dir}/database.yml",
     content => template("${module_name}/puppet_dashboard_database.yml.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    require => File[$puppet::params::puppet_config_dashboard_dir]
   }
 
   exec {'db_puppet_dashboard_migrate':
