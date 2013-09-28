@@ -3,12 +3,14 @@ class puppet::params {
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/:{
 
-      $puppet_master_package = 'puppetmaster'
+      $puppet_master_package       = 'puppetmaster'
+      $puppet_config_dashboard_dir = '/etc/puppet-dashboard'
 
     }
     /^(Redhat|CentOS)$/: {
 
-      $puppet_master_package = 'puppet-server'
+      $puppet_master_package       = 'puppet-server'
+      $puppet_config_dashboard_dir = '/usr/share/puppet-dashboard/config'
 
     }
     default:{
@@ -32,7 +34,6 @@ class puppet::params {
   $puppet_config_db_dir             = hiera('puppet_config_db_dir')
   $puppet_config_db_file            = hiera('puppet_config_db_file')
   $puppet_config_routes_db_file     = hiera('puppet_config_routes_db_file')
-  $puppet_config_dashboard_dir      = hiera('puppet_config_dashboard_dir')
   $puppet_server                    = hiera('puppet_server')
   $puppet_certname                  = hiera('puppet_certname')
   $puppet_db                        = hiera('puppet_db')
