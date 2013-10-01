@@ -24,7 +24,7 @@
 #
 class puppet::dashboard (
 
-  $web_server            = false
+  $web_server            = false,
   $puppet_dashboard_port = $puppet::params::puppet_dashboard_port,
 
 ) inherits puppet::params {
