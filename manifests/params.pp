@@ -41,6 +41,7 @@ class puppet::params {
   $puppet_dashboard                 = hiera('puppet_dashboard')
   $puppet_dashboard_db              = hiera('puppet_dashboard_db')
   $puppet_dashboard_db_host         = hiera('puppet_dashboard_db_host')
+  $puppet_dashboard_db_port         = hiera('puppet_dashboard_db_port')
   $puppet_dashboard_db_user         = hiera('puppet_dashboard_db_user')
   $puppet_dashboard_db_pass         = hiera('puppet_dashboard_db_pass')
   $puppet_dashboard_home            = '/usr/share/puppet-dashboard'
