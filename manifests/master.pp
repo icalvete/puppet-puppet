@@ -20,6 +20,14 @@
 #   Default: hiera('dashboard_db_host')
 #   false to disable
 #
+# [*puppet_dashboard*]
+#   Host where puppet dashboard runs.
+#   Default: hiera('puppet_dashboard')
+#
+# [*puppet_dashboard_port*]
+#   Port where puppet dashboard runs.
+#   Default: hiera('puppet_dashboard_port')
+#
 # [*puppet_modulepath*]
 #   Puppet modules path.
 #   Default: hiera('puppet_modulepath') (Can be an array)
@@ -47,6 +55,8 @@ class puppet::master (
   $puppet_certname          = $puppet::params::puppet_certname,
   $puppet_db                = $puppet::params::puppet_db,
   $puppet_dashboard_db_host = $puppet::params::puppet_dashboard_db_host,
+  $puppet_dashboard         = $puppet::params::puppet_dashboard,
+  $puppet_dashboard_port    = $puppet::params::puppet_dashboard_port,
   $puppet_modulepath        = $puppet::params::puppet_modulepath,
   $puppet_env               = undef
 

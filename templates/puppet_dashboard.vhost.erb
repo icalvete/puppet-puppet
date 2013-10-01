@@ -1,4 +1,4 @@
-<VirtualHost *:3333>
+<VirtualHost *:<%= scope.lookupvar('puppet::master::puppet_dashboard_port') -%>>
 
   ServerName puppet-dashboard.smartpurposes.net
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"

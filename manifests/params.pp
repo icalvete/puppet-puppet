@@ -39,6 +39,7 @@ class puppet::params {
   $puppet_db                        = hiera('puppet_db')
   $puppet_modulepath                = hiera('puppet_modulepath')
   $puppet_dashboard                 = hiera('puppet_dashboard')
+  $puppet_dashboard_port            = hiera('puppet_dashboard_port')
   $puppet_dashboard_db              = hiera('puppet_dashboard_db')
   $puppet_dashboard_db_host         = hiera('puppet_dashboard_db_host')
   $puppet_dashboard_db_user         = hiera('puppet_dashboard_db_user')
