@@ -10,7 +10,7 @@ class puppet::dashboard::service {
     ensure     => $ensure_puppet_dashboard_service,
     enable     => true,
     hasstatus  => true,
-    hasrestart => true,
+    hasrestart => false,
   }
 
   service{ $puppet::params::puppet_dashboard_workers_service:
