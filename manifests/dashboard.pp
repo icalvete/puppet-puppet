@@ -22,6 +22,7 @@
 #
 # Israel Calvete Talavera <icalvete@gmail.com>
 #
+
 class puppet::dashboard (
 
   $web_server            = false,
