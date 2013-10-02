@@ -66,9 +66,9 @@ class puppet::dashboard::config {
 
     exec {'puppet-dashboard_default_port_config':
       cwd     => '/tmp',
-      command => '/bin/sed -i \'s/3000/3333/\' /etc/default/puppet-dashboard',
+      command => "/bin/sed -i \'s/3000/${puppet::dashboard::puppet_dashboard_port}/\' /etc/default/puppet-dashboard",
       require => File['puppet_dashboard_config'],
-      unless  => '/bin/grep 3333 /etc/default/puppet-dashboard'
+      unless  => "/bin/grep ${puppet::dashboard::puppet_dashboard_port} /etc/default/puppet-dashboard"
     }
   }
 }

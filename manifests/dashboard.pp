@@ -6,6 +6,10 @@
 #   Using a external webserver.
 #   Default: false
 #
+# [*puppet_dashboard_port*]
+#   Port where puppet dashboard runs.
+#   Default: hiera('puppet_dashboard_port')
+#
 # === Actions:
 #
 # Install and configure puppet dashboard
@@ -18,9 +22,11 @@
 #
 # Israel Calvete Talavera <icalvete@gmail.com>
 #
+
 class puppet::dashboard (
 
-  $web_server = false
+  $web_server            = false,
+  $puppet_dashboard_port = $puppet::params::puppet_dashboard_port,
 
 ) inherits puppet::params {
 
