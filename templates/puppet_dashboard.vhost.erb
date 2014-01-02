@@ -1,6 +1,6 @@
 <VirtualHost *:<%= scope.lookupvar('puppet::master::puppet_dashboard_port') -%>>
 
-  ServerName puppet-dashboard.smartpurposes.net
+  ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
@@ -8,14 +8,14 @@
   PassengerAppRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>"
   PassengerRuby  /usr/bin/ruby
 
-        CustomLog ${APACHE_LOG_DIR}/ssl_access.log combined
+  CustomLog ${APACHE_LOG_DIR}/ssl_access.log combined
 
 </VirtualHost>
 
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
 
-  ServerName puppet-dashboard.smartpurposes.net
+  ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common

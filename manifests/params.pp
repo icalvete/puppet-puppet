@@ -18,6 +18,8 @@ class puppet::params {
     }
   }
 
+  $org_domain                       = hiera('org_domain')
+
   $puppet_agent_package             = 'puppet'
   $puppet_db_package                = 'puppetdb'
   $puppet_dashboard_package         = 'puppet-dashboard'

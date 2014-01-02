@@ -7,8 +7,8 @@ factpath=$vardir/lib/facter
 templatedir=$confdir/templates
 
 <% if @osfamily =~ /^(Debian|Ubuntu)/ -%>
-prerun_command=/etc/puppet/etckeeper-commit-pre
-postrun_command=/etc/puppet/etckeeper-commit-post
+#prerun_command=/etc/puppet/etckeeper-commit-pre
+#postrun_command=/etc/puppet/etckeeper-commit-post
 <% end -%>
 
 server = <%= scope.lookupvar('puppet::master::puppet_server') %>
