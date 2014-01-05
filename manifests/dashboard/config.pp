@@ -48,8 +48,8 @@ class puppet::dashboard::config {
 
     file{ 'puppet_dashboard_vhost':
       ensure  => present,
-      path    => "${apache2::params::apache2_ensites}/puppet_dashboard.vhost",
-      content => template("${module_name}/puppet_dashboard.vhost.erb"),
+      path    => "${apache2::params::ensites}/puppet_dashboard.vhost.conf",
+      content => template("${module_name}/puppet_dashboard.vhost.conf.erb"),
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
