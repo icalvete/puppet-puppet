@@ -3,12 +3,11 @@
   ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
-  CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
+  #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
+  CustomLog  '|/usr/bin/logger -p local4.info -t apache' combined
 
   PassengerAppRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>"
   PassengerRuby  /usr/bin/ruby
-
-  CustomLog ${APACHE_LOG_DIR}/ssl_access.log combined
 
 </VirtualHost>
 
@@ -18,7 +17,8 @@
   ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
-  CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
+  #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
+  CustomLog  '|/usr/bin/logger -p local4.info -t apache' combined
 
   <Location />
     AuthType Basic
@@ -31,7 +31,6 @@
   PassengerAppRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>"
   PassengerRuby  /usr/bin/ruby
 
-        CustomLog ${APACHE_LOG_DIR}/ssl_access.log combined
 
         #   SSL Engine Switch:
         #   Enable/Disable SSL for this virtual host.
