@@ -32,7 +32,7 @@ See http://docs.puppetlabs.com/man/apply.html
 
     node 'fag01.smartpurposes.com' inherits fourandgo {
       
-      class {'puppet::p_master':
+      class {'puppet::master':
         puppet_config     => '/etc/puppet/puppet.conf',
         puppet_server     => 'puppet.smartpurposes.com',
         puppet_certname   => 'puppet.smartpurposes.com',
@@ -43,7 +43,7 @@ See http://docs.puppetlabs.com/man/apply.html
 
     node 'fag02.smartpurposes.com' inherits fourandgo {
       
-      class {'puppet::p_agent':
+      class {'puppet::agent':
         puppet_config     => '/etc/puppet/puppet.conf',
         puppet_server     => 'puppet.smartpurposes.com',
         puppet_certname   => 'puppet.smartpurposes.com',
