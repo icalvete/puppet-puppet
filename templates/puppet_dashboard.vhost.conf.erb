@@ -2,9 +2,10 @@
 
   ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
-  ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
+  #ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
-  CustomLog  '|/usr/bin/logger -p local4.info -t apache' combined
+  ErrorLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::error'
+  CustomLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::access' combined_sp_sp
 
   PassengerAppRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>"
   PassengerRuby  /usr/bin/ruby
@@ -16,9 +17,10 @@
 
   ServerName puppet-dashboard.<%= scope.lookupvar('puppet::params::org_domain') %>
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
-  ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
+  #ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
-  CustomLog  '|/usr/bin/logger -p local4.info -t apache' combined
+  ErrorLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::error'
+  CustomLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::access' combined_sp_sp
 
   <Location />
     AuthType Basic
