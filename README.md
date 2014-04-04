@@ -30,6 +30,7 @@ See http://docs.puppetlabs.com/man/apply.html
 
 ##Example:
 
+```puppet
     node 'fag01.smartpurposes.com' inherits fourandgo {
       
       class {'puppet::master':
@@ -50,6 +51,7 @@ See http://docs.puppetlabs.com/man/apply.html
         puppet_env        => 'dev',
       }
     }
+```
 
 ##Authors:
 
