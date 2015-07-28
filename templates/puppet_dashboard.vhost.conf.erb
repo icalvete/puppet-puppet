@@ -4,8 +4,11 @@
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   #ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
-  ErrorLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::error'
-  CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_sp
+  #ErrorLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::error'
+  ErrorLog  syslog:local3
+  #CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp=!forwarded
+  #CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_proxy env=forwarded
+  CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_proxy
 
   PassengerAppRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>"
   PassengerRuby  /usr/bin/ruby
@@ -19,8 +22,11 @@
   DocumentRoot "<%= scope.lookupvar('puppet::params::puppet_dashboard_home') -%>/public"
   #ErrorLog ${APACHE_LOG_DIR}/puppet-dashboard_error.log
   #CustomLog  ${APACHE_LOG_DIR}/puppet-dashboard.log common
-  ErrorLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::error'
-  CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_sp
+  #ErrorLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::error'
+  ErrorLog  syslog:local3
+  #CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp=!forwarded
+  #CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_proxy env=forwarded
+  CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::env') -%>::access' combined_sp_proxy
 
   <Location />
     AuthType Basic
