@@ -5,7 +5,7 @@ vardir=/var/lib/puppet
 ssldir=/var/lib/puppet/ssl
 rundir=/var/run/puppet
 factpath=$vardir/lib/facter
-templatedir=$confdir/templates
+#templatedir=$confdir/templates
 
 server = <%= scope.lookupvar('puppet::agent::puppet_server') %>
 
